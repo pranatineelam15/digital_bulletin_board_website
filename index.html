@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Notice Board</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <a href="index.html">
+                <img src="img/logo.png" alt="College Logo">
+            </a>
+        </div>
+        <div class="navbar-space"></div>
+        <div class="navbar-account">
+            <img src="img/account.png" alt="Account Logo">
+        </div>
+    </nav>
+    <div class="main-content">
+        <aside class="sidebar">
+            <ul>
+                <li><a class="active" href="index.html">HOME</a></li>
+                <li><a href="gitam.html">GITAM</a></li>
+                <li><a href="GCGC.html">GCGC</a></li>
+                <li><a href="chapters.html">Chapters</a></li>
+                <li><a href="clubs.html">Clubs</a></li>
+                <li><a href="chat.html">Group Chat</a></li>
+            </ul>
+        </aside>
+        <div class="pinned-section" id="pinned-section">
+            <h2>Pinned Events</h2>
+            <div id="pinned-bulletins">
+                <!-- Pinned items will go here -->
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const pinnedBulletins = document.getElementById('pinned-bulletins');
+            let pinnedItems = JSON.parse(localStorage.getItem('pinnedItems')) || [];
+
+            pinnedItems.forEach((info, index) => {
+                if (index % 2 === 0) {
+                    const container = document.createElement('div');
+                    container.classList.add('info-box-container');
+                    pinnedBulletins.appendChild(container);
+                }
+                const container = pinnedBulletins.lastElementChild;
+                const infoBox = document.createElement('div');
+                infoBox.classList.add('info-box');
+                infoBox.innerHTML = `
+                    <h3>Pinned Information</h3>
+                    <p>${info}</p>
+                `;
+                container.appendChild(infoBox);
+            });
+        });
+    </script>
+</body>
+</html>
